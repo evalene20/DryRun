@@ -1,0 +1,58 @@
+# Python
+backend/venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment
+.env
+backend/.env
+
+# FastAPI
+.pytest_cache/
+.coverage
+
+# Database
+*.db
+*.sqlite3
+
+# Uploads
+backend/uploads/
+
+# Node
+frontend/node_modules/
+
+# Next.js
+frontend/.next/
+frontend/out/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Build
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Alembic cache
+backend/alembic/versions/__pycache__/
+
+# Misc
+*.swp
