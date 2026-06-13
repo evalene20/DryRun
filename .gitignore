@@ -3,11 +3,11 @@ backend/venv/
 __pycache__/
 *.py[cod]
 *.pyo
-*.pyd
+*.pyd 
 
 # Environment
 .env
-backend/.env
+backend/venv
 
 # FastAPI
 .pytest_cache/
@@ -22,6 +22,8 @@ backend/uploads/
 
 # Node
 frontend/node_modules/
+.next/
+
 
 # Next.js
 frontend/.next/
