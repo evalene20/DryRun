@@ -3,6 +3,7 @@ from fastapi import UploadFile
 from fastapi import File
 
 import shutil
+import os
 
 from app.utils.pdf_parser import extract_text
 from app.services.resume_analyzer import analyze_resume
@@ -16,6 +17,11 @@ router = APIRouter(
 def upload_resume(
     file: UploadFile = File(...)
 ):
+
+    os.makedirs(
+        "uploads",
+        exist_ok=True
+    )
 
     file_path = f"uploads/{file.filename}"
 
@@ -31,9 +37,7 @@ def upload_resume(
 
     text = extract_text(file_path)
 
-    analysis = analyze_resume(
-        text
-    )
+    analysis = analyze_resume(text)
 
     return {
         "filename": file.filename,

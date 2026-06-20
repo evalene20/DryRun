@@ -10,27 +10,28 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
-
 def analyze_resume(text):
 
     prompt = f"""
 You are an ATS Resume Analyzer.
 
-Analyze the resume and return ONLY valid JSON.
+Analyze the following resume.
 
-Required format:
+Return ONLY valid JSON.
 
 {{
-    "skills": [],
-    "projects": [],
-    "experience_level": "",
-    "strengths": [],
-    "missing_skills": [],
-    "resume_score": 0
+  "skills": [],
+  "projects": [],
+  "experience_level": "",
+  "strengths": [],
+  "weaknesses": [],
+  "missing_skills": [],
+  "resume_score": 0,
+  "recommended_roles": [],
+  "interview_topics": []
 }}
 
 Resume:
-
 {text}
 """
 
@@ -44,12 +45,14 @@ Resume:
     if result.startswith("```json"):
         result = result.replace("```json", "")
         result = result.replace("```", "")
-        result = result.strip()
+
+    result = result.strip()
 
     try:
         return json.loads(result)
 
     except Exception:
         return {
+            "error": "Failed to parse Gemini response",
             "raw_response": result
         }
